@@ -22,13 +22,21 @@ model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
 
+print("Credenciales AWS Cargadas Desde Streamlit Secrets:")
+print(f"Access Key ID: {aws_access_key_id}")
+print(f"Secret Access Key: {'[REDACTADO]' if aws_secret_access_key else 'No Cargada'}") # Redactado por seguridad en logs
+print(f"Session Token: {'[REDACTADO]' if aws_session_token else 'No Cargado'}") # Redactado por seguridad en logs
     
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
     endpoint_url="https://bedrock-runtime.us-east-1.amazonaws.com",
     region_name=region_name,
-
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    aws_session_token=aws_session_token
 )
+
+
 #---------------------------------------------------------------------------------------#
 
 def get_embedding_function():
