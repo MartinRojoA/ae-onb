@@ -1,12 +1,17 @@
 from langchain.prompts import PromptTemplate
 from template import prompt_template 
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings.bedrock import BedrockEmbeddings
+from langchain_aws import BedrockEmbeddings
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
 model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
+
+
 
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
