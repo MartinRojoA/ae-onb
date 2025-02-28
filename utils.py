@@ -2,9 +2,17 @@ from langchain.prompts import PromptTemplate
 from template import prompt_template 
 from langchain_community.vectorstores import Chroma
 from langchain_aws import BedrockEmbeddings
+
 __import__('pysqlite3')
+
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+import os
+os.environ['AWS_ACCESS_KEY_ID'] = 'TU_ACCESS_KEY'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'TU_SECRET_KEY'
+os.environ['AWS_SESSION_TOKEN'] = 'TU_SESSION_TOKEN'  # opcional
+os.environ['AWS_REGION'] = 'tu-region' 
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
