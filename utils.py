@@ -8,11 +8,9 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import os
-os.environ['AWS_ACCESS_KEY_ID'] = 'TU_ACCESS_KEY'
-os.environ['AWS_SECRET_ACCESS_KEY'] = 'TU_SECRET_KEY'
-os.environ['AWS_SESSION_TOKEN'] = 'TU_SESSION_TOKEN'  # opcional
-os.environ['AWS_REGION'] = 'tu-region' 
+aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
+aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+aws_region = st.secrets["AWS_REGION"]
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
@@ -24,6 +22,8 @@ txt_model_name = "amazon.nova-lite-v1:0"
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
+        aws_access_key_id=aws_access_key,
+        aws_secret_access_key=aws_secret_key,
         model_id=model_id,
     )
     return embeddings
