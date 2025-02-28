@@ -23,7 +23,7 @@ txt_model_name = "amazon.nova-lite-v1:0"
 # Crea el cliente de Bedrock
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
-    region_name=region_nam
+    region_name=region_name
 )
 
 def get_embedding_function():
