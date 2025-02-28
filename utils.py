@@ -26,6 +26,7 @@ txt_model_name = "amazon.nova-lite-v1:0"
 
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
+    endpoint_url="https://bedrock-runtime.us-east-1.amazonaws.com",
     region_name=region_name,
     aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key,
@@ -73,9 +74,7 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         chat = ChatBedrock(
             region_name=region_name,
             model_id=txt_model_name,
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
-                aws_session_token=aws_session_token
+            client=bedrock_client
 
         )
         print("ChatBedrock inicializado correctamente")
