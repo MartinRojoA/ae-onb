@@ -4,6 +4,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_aws import BedrockEmbeddings
 import streamlit as st
 import boto3
+from langchain_aws import ChatBedrock
 
 __import__('pysqlite3')
 
@@ -57,7 +58,6 @@ def generar_prompt(chunks, question):
     return prompt.format(chunks=chunks, question=question)
 
 
-from langchain_aws import ChatBedrock
 
 def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
     """Genera una respuesta utilizando el modelo ChatBedrock de AWS."""
@@ -78,7 +78,7 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         print("ChatBedrock inicializado correctamente")
         return chat.predict(mensaje)
     except Exception as e:
-        print(f"Error al inicializar ChatBedrock: {e}")
+        return (f"Error al inicializar ChatBedrock: {e}")
         
     
 
