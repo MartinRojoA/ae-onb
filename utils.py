@@ -1,5 +1,5 @@
 from langchain.prompts import PromptTemplate
-from template import prompt_template 
+from template import prompt_template
 from langchain_community.vectorstores import Chroma
 from langchain_aws import BedrockEmbeddings
 import streamlit as st
@@ -10,30 +10,32 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-
-aws_access_key = st.secrets["aws_access_key_id"]
-aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+# Accede a las credenciales desde los secretos de Streamlit
+aws_access_key_id = st.secrets["AWS_ACCESS_KEY_ID"]
+aws_secret_access_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
 model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
+# Crea el cliente de Bedrock
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
     region_name=region_name,
-    aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_key
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
 )
 
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
         model_id=model_id,
-        client=bedrock_client
-   
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
     )
     return embeddings
+
 
 def get_chroma():
     return Chroma(
