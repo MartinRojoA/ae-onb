@@ -10,6 +10,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
+print(aws_access_key)
 aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
 aws_region = st.secrets["AWS_REGION"]
 
