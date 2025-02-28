@@ -2,6 +2,7 @@ from langchain.prompts import PromptTemplate
 from template import prompt_template 
 from langchain_community.vectorstores import Chroma
 from langchain_aws import BedrockEmbeddings
+import streamlit as st
 
 __import__('pysqlite3')
 
