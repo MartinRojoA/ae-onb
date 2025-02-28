@@ -30,6 +30,7 @@ def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
         model_id=model_id,
+        client=bedrock_client
    
     )
     return embeddings
