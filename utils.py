@@ -3,6 +3,7 @@ from template import prompt_template
 from langchain_community.vectorstores import Chroma
 from langchain_aws import BedrockEmbeddings
 import streamlit as st
+import boto3
 
 __import__('pysqlite3')
 
@@ -18,6 +19,12 @@ region_name = 'us-east-1'
 model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
+bedrock_client = boto3.client(
+    service_name="bedrock-runtime",
+    region_name=region_name,
+    aws_access_key_id=aws_access_key,
+    aws_secret_access_key=aws_secret_key
+)
 
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
