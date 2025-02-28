@@ -24,7 +24,7 @@ txt_model_name = "amazon.nova-lite-v1:0"
 
 print("Credenciales AWS Cargadas Desde Streamlit Secrets:")
 print(f"Access Key ID: {aws_access_key_id}")
-print(f"Secret Access Key: {'[REDACTADO]' if aws_secret_access_key else 'No Cargada'}") # Redactado por seguridad en logs
+print(f"Secret Access Key: {aws_secret_access_key) # Redactado por seguridad en logs
 print(f"Session Token: {'[REDACTADO]' if aws_session_token else 'No Cargado'}") # Redactado por seguridad en logs
     
 bedrock_client = boto3.client(
