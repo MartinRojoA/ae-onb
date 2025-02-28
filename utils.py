@@ -20,12 +20,13 @@ region_name = 'us-east-1'
 model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
-# Crea el cliente de Bedrock
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
-    region_name=region_name
+    region_name=region_name,
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    aws_session_token=aws_session_token
 )
-
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
