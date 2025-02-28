@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 from template import prompt_template 
-from langchain.vectorstores.chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings.bedrock import BedrockEmbeddings
 
 CHROMA_PATH = 'chroma_db'
