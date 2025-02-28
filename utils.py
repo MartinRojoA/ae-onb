@@ -23,8 +23,6 @@ txt_model_name = "amazon.nova-lite-v1:0"
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
-        aws_access_key_id=aws_access_key,
-        aws_secret_access_key=aws_secret_key,
         model_id=model_id,
     )
     return embeddings
