@@ -32,6 +32,8 @@ bedrock_client = boto3.client(
     aws_secret_access_key=aws_secret_access_key,
     aws_session_token=aws_session_token
 )
+#---------------------------------------------------------------------------------------#
+
 def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
@@ -41,11 +43,13 @@ def get_embedding_function():
     )
     return embeddings
 
+#---------------------------------------------------------------------------------------#
 
 def get_chroma():
     return Chroma(
         persist_directory=CHROMA_PATH, embedding_function=get_embedding_function()
     )
+#---------------------------------------------------------------------------------------#
 
 def generar_prompt(chunks, question):
     """Genera un prompt formateado para un asistente virtual especializado en Ingeniería de Analítica de Datos."""
@@ -58,6 +62,7 @@ def generar_prompt(chunks, question):
     # Formatear el prompt con los valores proporcionados
     return prompt.format(chunks=chunks, question=question)
 
+#---------------------------------------------------------------------------------------#
 
 
 def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
@@ -83,7 +88,7 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         return (f"Error al inicializar ChatBedrock: {e}")
         
     
-
+#---------------------------------------------------------------------------------------#
 
 def inference(pregunta, k=3):
     """Realiza una inferencia utilizando el modelo de lenguaje ChatBedrock de AWS y la base de datos Chroma."""
@@ -93,13 +98,12 @@ def inference(pregunta, k=3):
 
     # Realizar la búsqueda de similitud para recuperar los documentos más relevantes
     resultados = db.similarity_search(pregunta, k=k)
-    print(resultados)
     # Extraer el contenido de las páginas de los documentos recuperados
     contexto = "\n\n---\n\n".join([doc.page_content for doc in resultados])
 
     # Generar el prompt con el contexto y la pregunta
     prompt = generar_prompt(chunks=contexto, question=pregunta)
-
+    print(prompt)
     # Obtener la respuesta del modelo de lenguaje
     respuesta = obtener_respuesta(prompt)
 
