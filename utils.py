@@ -91,7 +91,7 @@ def inference(pregunta, k=3):
 
     # Realizar la búsqueda de similitud para recuperar los documentos más relevantes
     resultados = db.similarity_search(pregunta, k=k)
-
+    print(resultados)
     # Extraer el contenido de las páginas de los documentos recuperados
     contexto = "\n\n---\n\n".join([doc.page_content for doc in resultados])
 
