@@ -12,7 +12,6 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 aws_access_key = st.secrets["aws_access_key_id"]
 print(aws_access_key)
 aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
-aws_region = st.secrets["AWS_REGION"]
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
