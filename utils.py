@@ -61,8 +61,7 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
 
     if model_kwargs is None:
         model_kwargs = {
-            "temperature": 0.2,
-            "topP": 0.2,
+            "temperature": 0.5, # increased temperature
             "maxTokenCount": 200,
         }
 
@@ -76,7 +75,6 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
 
     # Realizar la predicción y retornar la respuesta
     return chat.predict(mensaje)
-
 
 
 def inference(pregunta, k=3):
