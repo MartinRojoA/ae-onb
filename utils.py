@@ -71,6 +71,7 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         region_name=region,
         model_id=txt_model_name,
         model_kwargs=model_kwargs,
+        client=bedrock_client
     )
 
     # Realizar la predicción y retornar la respuesta
