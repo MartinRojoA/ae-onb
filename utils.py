@@ -23,7 +23,6 @@ txt_model_name = "amazon.nova-lite-v1:0"
 
 
     
-
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
     endpoint_url="https://bedrock-runtime.us-east-1.amazonaws.com",
