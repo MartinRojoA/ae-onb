@@ -73,7 +73,8 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         chat = ChatBedrock(
             region_name=region_name,
             model_id=txt_model_name,
-            client=bedrock_client
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key
         )
         print("ChatBedrock inicializado correctamente")
         return chat.predict(mensaje)
