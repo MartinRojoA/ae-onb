@@ -21,15 +21,6 @@ model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
 
-try:
-    chat = ChatBedrock(
-        region_name=region_name,
-        model_id=txt_model_name,
-        client=bedrock_client
-    )
-    print("ChatBedrock inicializado correctamente")
-except Exception as e:
-    print(f"Error al inicializar ChatBedrock: {e}")
     
 
 bedrock_client = boto3.client(
@@ -78,7 +69,18 @@ def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
         }
 
    
-    return chat.predict(mensaje)
+    try:
+        chat = ChatBedrock(
+            region_name=region_name,
+            model_id=txt_model_name,
+            client=bedrock_client
+        )
+        print("ChatBedrock inicializado correctamente")
+        return chat.predict(mensaje)
+    except Exception as e:
+        print(f"Error al inicializar ChatBedrock: {e}")
+        
+    
 
 
 def inference(pregunta, k=3):
