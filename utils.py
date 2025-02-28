@@ -13,6 +13,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # Accede a las credenciales desde los secretos de Streamlit
 aws_access_key_id = st.secrets["aws"]["AWS_ACCESS_KEY_ID"]
 aws_secret_access_key = st.secrets["aws"]["AWS_SECRET_ACCESS_KEY"]
+aws_session_token = st.secrets["aws"]["AWS_SESSION_TOKEN"]
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
@@ -22,9 +23,7 @@ txt_model_name = "amazon.nova-lite-v1:0"
 # Crea el cliente de Bedrock
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
-    region_name=region_name,
-    aws_access_key_id=aws_access_key_id,
-    aws_secret_access_key=aws_secret_access_key
+    region_name=region_nam
 )
 
 def get_embedding_function():
