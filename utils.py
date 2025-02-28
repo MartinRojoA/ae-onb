@@ -10,8 +10,8 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 
-aws_access_key = st.secrets["aws"]["aws_access_key_id"]
-aws_secret_key = st.secrets["aws"]["AWS_SECRET_ACCESS_KEY"]
+aws_access_key = st.secrets["aws_access_key_id"]
+aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
 
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
@@ -23,6 +23,8 @@ def get_embedding_function():
     embeddings = BedrockEmbeddings(
         region_name=region_name,
         model_id=model_id,
+         aws_access_key_id=aws_access_key,
+    aws_secret_access_key=aws_secret_key,
     )
     return embeddings
 
