@@ -25,7 +25,6 @@ txt_model_name = "amazon.nova-lite-v1:0"
 print("Credenciales AWS Cargadas Desde Streamlit Secrets:")
 print(f"Access Key ID: {aws_access_key_id}")
 print(f"Access Key ID: {aws_secret_access_key}")
-
 print(f"Session Token: {'[REDACTADO]' if aws_session_token else 'No Cargado'}") # Redactado por seguridad en logs
     
 bedrock_client = boto3.client(
@@ -77,7 +76,6 @@ def obtener_respuesta(mensaje):
         chat = ChatBedrock(
             region_name=region_name,
             model_id=txt_model_name,
-            client=bedrock_client
         )
         print("ChatBedrock inicializado correctamente")
         return chat.predict(mensaje)
