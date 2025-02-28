@@ -71,22 +71,13 @@ def generar_prompt(chunks, question):
 #---------------------------------------------------------------------------------------#
 
 
-def obtener_respuesta(mensaje, region='us-east-1', model_kwargs=None):
+def obtener_respuesta(mensaje):
     """Genera una respuesta utilizando el modelo ChatBedrock de AWS."""
-
-    if model_kwargs is None:
-        model_kwargs = {
-            "temperature": 0.5, # increased temperature
-            "maxTokenCount": 200,
-        }
-
-   
     try:
         chat = ChatBedrock(
             region_name=region_name,
             model_id=txt_model_name,
             client=bedrock_client
-
         )
         print("ChatBedrock inicializado correctamente")
         return chat.predict(mensaje)
