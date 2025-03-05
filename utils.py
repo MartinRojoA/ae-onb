@@ -16,17 +16,17 @@ aws_access_key_id = st.secrets["aws"]["AWS_ACCESS_KEY_ID"]
 aws_secret_access_key = st.secrets["aws"]["AWS_SECRET_ACCESS_KEY"]
 aws_session_token = st.secrets["aws"]["AWS_SESSION_TOKEN"]
 
+print("Credenciales AWS Cargadas Desde Streamlit Secrets:")
+print(f"Access Key ID: {aws_access_key_id}")
+print(f"Access Key ID: {aws_secret_access_key}")
+print(f"Session Token: {'[REDACTADO]' if aws_session_token else 'No Cargado'}") # Redactado por seguridad en logs
+
 CHROMA_PATH = 'chroma_db'
 region_name = 'us-east-1'
 model_id = "amazon.titan-embed-text-v1"
 txt_model_name = "amazon.nova-lite-v1:0"
 
 
-print("Credenciales AWS Cargadas Desde Streamlit Secrets:")
-print(f"Access Key ID: {aws_access_key_id}")
-print(f"Access Key ID: {aws_secret_access_key}")
-print(f"Session Token: {'[REDACTADO]' if aws_session_token else 'No Cargado'}") # Redactado por seguridad en logs
-    
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
     endpoint_url="https://bedrock-runtime.us-east-1.amazonaws.com",
