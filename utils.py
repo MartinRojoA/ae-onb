@@ -57,7 +57,7 @@ def get_chroma():
 #---------------------------------------------------------------------------------------#
 
 def generar_prompt(chunks, question):
-    """Genera un prompt formateado para un asistente virtual especializado en Ingeniería de Analítica de Datos."""
+    """Genera un prompt formateado para un asistente virtual especializado en Ingeniería de Analítica de Datos.."""
     
     prompt = PromptTemplate(
         input_variables=["chunks", "question"],
